@@ -1,16 +1,17 @@
 
-Read Me: YTS Torrent Search and Download Flask App
+<h3>Read Me: YTS Torrent Search and Download Flask App<h3>
 This file provides information about the Flask application built to access the YTS API for searching, viewing movie details, and downloading torrent files.
 
-Features
+<h4>Features<h4>
 Search for movies by title or query.
 View detailed information about each movie, including synopsis, cast, genre, rating, and release date.
 Download torrent files for different resolutions of the desired movie.
 Clean and user-friendly interface.
+  <h5>
 Installation and Usage
 
 
-1. Prerequisites:<br>
+1. Prerequisites:<br><h5>
 
 Python 3.7+
 Flask
@@ -18,7 +19,7 @@ Requests library
 A YTS API key (optional, but recommended for higher limits)
 <br>
 
-2. Setting up:<br>
+<h5>2. Setting up:<br><h5>
 
 Clone the repository or download the code.
 Install the required dependencies: pip install flask requests
