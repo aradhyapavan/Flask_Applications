@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../static/package/css/swiper.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/assets/css/s.min.css">
+    <!-- Demo styles -->
+
+</head>
+
+<body style="background-color: black;">
+    <!-- Swiper -->
+    <div class="netflix">
+        <h2>Top Movies</h2>>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="  model-card">
+                        <a href="#">
+                            <div class="ribbon"><span>POPULAR</span></div>
+                            <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 192px;" src="assets/img/modal.jpg" />
+
+                                <div class="bsblox-caption">
+
+                                    <p>VIEW<strong>PROFILE</strong></p>
+                                </div>
+                                <div class="text-center  model-card-title" style="font-size: small;">Avatar Avatar AvatarAvatarAvatar</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="  model-card">
+                        <a href="#">
+                            <div class="ribbon"><span>POPULAR</span></div>
+                            <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 192px;" src="assets/img/modal.jpg" />
+
+                                <div class="bsblox-caption">
+
+                                    <p>VIEW<strong>PROFILE</strong></p>
+                                </div>
+                                <div class="text-center  model-card-title" style="font-size: small;">Avatar Avatar AvatarAvatarAvatar</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="  model-card">
+                        <a href="#">
+                            <div class="ribbon"><span>POPULAR</span></div>
+                            <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 192px;" src="assets/img/modal.jpg" />
+
+                                <div class="bsblox-caption">
+
+                                    <p>VIEW<strong>PROFILE</strong></p>
+                                </div>
+                                <div class="text-center  model-card-title" style="font-size: small;">Avatar Avatar AvatarAvatarAvatar</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="  model-card">
+                        <a href="#">
+                            <div class="ribbon"><span>POPULAR</span></div>
+                            <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 192px;" src="assets/img/modal.jpg" />
+
+                                <div class="bsblox-caption">
+
+                                    <p>VIEW<strong>PROFILE</strong></p>
+                                </div>
+                                <div class="text-center  model-card-title" style="font-size: small;">Avatar Avatar AvatarAvatarAvatar</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="../package/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        function myFunction(x) {
+            if (x.matches) {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    slidesPerGroup: 4,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            } else {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                    slidesPerGroup: 4,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+
+
+            }
+        }
+
+        var x = window.matchMedia("(max-width: 700px)")
+        myFunction(x) // Call listener function at run time
+        x.addListener(myFunction)
+    </script>
+</body>
+
+</html>
