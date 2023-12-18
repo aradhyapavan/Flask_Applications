@@ -8,6 +8,8 @@ View detailed information about each movie, including synopsis, cast, genre, rat
 Download torrent files for different resolutions of the desired movie.
 Clean and user-friendly interface.
 Installation and Usage
+
+
 1. Prerequisites:<br>
 
 Python 3.7+
@@ -15,12 +17,14 @@ Flask
 Requests library
 A YTS API key (optional, but recommended for higher limits)
 <br>
-2. Setting up:
+
+2. Setting up:<br>
 
 Clone the repository or download the code.
 Install the required dependencies: pip install flask requests
 (Optional) If using a YTS API key, create a .env file and add the key as YTS_API_KEY=YOUR_KEY
 Run the application: python app.py
+<br>
 3. Using the App:
 
 Visit http://localhost:5000/ in your web browser.
