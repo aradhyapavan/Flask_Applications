@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="static/css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <link rel="stylesheet" href="../static/package/css/swiper.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/assets/css/s.min.css">
+    <!-- Demo styles -->
+
+</head>
+
+<body style="background-color: black;">
+    <div class="container p-2 text-center ">
+        <div class="card card--clean mb-0 ">
+            <div class="col-12">
+                <header class="card__header card__header--has-btn bg-black ml-n4 mr-n4 bg-dark">
+                    <h4 class="text-white ">Top Movies of All Time </h4>
+                </header>
+
+            </div>
+        </div>
+    </div>
+    <!-- Swiper -->
+    <div class="netflix">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for item in data %}
+                <div class="swiper-slide">
+                    <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                        <a href="#">
+                            <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                            <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 192px;" src="{{ item['large_cover_image'] }}" />
+
+                                <div class="bsblox-caption mt-n5 d-block">
+
+                                    <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                        <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                    </p>
+
+                                    <p> <span class="mr-n3 ">720P</span> <span class="ml-4">1080P</span></p>
+
+                                    <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-success" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating">{{item['rating']}}/10</i></p><br>
+
+                                    <p> <button type="button" class="mt-n2 btn btn-success btn-sm">Details</button></p>
+                                </div>
+                                <div class="text-center  model-card-title" style="font-size: small;">{{ item['title'] }}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="../static/package/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        function myFunction(x) {
+            if (x.matches) {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    slidesPerGroup: 4,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            } else {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 6,
+                    spaceBetween: 10,
+                    slidesPerGroup: 4,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+
+
+            }
+        }
+
+        var x = window.matchMedia("(max-width: 700px)")
+        myFunction(x) // Call listener function at run time
+        x.addListener(myFunction)
+    </script>
+</body>
+
+</html>
