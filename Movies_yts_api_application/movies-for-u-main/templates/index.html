@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Movie Download site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="static/css/mdb.min.css">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/assets/css/styles.min.css">
+
+    <link rel="stylesheet" href="../static/package/css/swiper.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/assets/css/s.min.css">
+
+
+    <style>
+        .swiper-button-prev:hover {
+            box-shadow: none;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #333333;
+        }
+        
+        .swiper-button-next:hover {
+            box-shadow: none;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #333333;
+        }
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <nav class="navbar navbar-expand-sm bg-black mb-2 justify-content-center">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <img src="static/img/mv.png" width="auto" height="250px">
+            </li>
+
+
+        </ul>
+
+
+    </nav>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>This WebSite Do Not Track or Collect any Users Data,No Ads and Pop-Ups. </strong>Please Use <strong> Any Vpn</strong> To Load All The images and for Better User Experience.
+        <li>Chrome PC Users<strong><a target="_blank" href="https://chrome.google.com/webstore/detail/setupvpn-lifetime-free-vp/oofgbpoabipfcfjapgnbbjjaenockbdp"> Vpn Link</a></strong> </li>
+        <li>Firefox PC Users<strong><a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/setupvpn/"> Vpn Link </a></strong></li>
+        <li>Mobile Users can Use Any Vpn App.</li>
+        <button type="button" class="close" data-dismiss="alert" id="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="container">
+        <form action="{{ url_for('search') }}" method="POST">
+            <div class="search-container"><input type="text" class="search-input" name="search-bar" id="search-bar" placeholder="Search... your fav movies names here... "><button class="btn btn-light search-btn" id="search_button" type="submit" value="submit"> <i class="fa fa-search"></i></button></div>
+        </form>
+        <form action="{{ url_for('filter') }}" method="POST">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-">
+                        <div class="form-groups">
+                            <label for="exampleFormControlSelect1 " class="text-white">Minimum Rating</label>
+                            <select class="form-control d-inline-block" name="rating" id="rating">
+                                <option value="" selected>Select Rating</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option  value="5">5</option>
+                          <option  value="6">6</option>
+                          <option  value="7">7</option>
+                          <option  value="8">8</option>
+                          <option  value="9">9</option>
+                         
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label for=" text-white" class="text-white">Genre</label>
+                            <select class="form-control d-inline-block" name="genre" id="genre">
+                                <option value="" selected>Select Genre</option>
+                          <option value="comedy">Comedy</option>
+                          <option value="action">Action</option>
+                          <option value="horror">Horror</option>
+                          <option value="animation"> Animation</option>
+                          <option value="adventure">Adventure</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1" class="text-white">Sort By</label>
+                            <select class="form-control d-inline-block" name="sort_by" id="sort_by">
+                                <option value="" selected>Sort By</option>
+                          <option value="title">Title</option>
+                          <option value="year">Year</option>
+                          <option valu="rating">Rating</option>
+                          
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label for=" text-white" class="text-white">Filter </label></div>
+                        <button class="btn btn-light search-btn mt-n3" id="filter_button" type="submit" value="submit"> <i class="fas fa-filter"></i></button>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top Movies of All Time <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in data %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top 50 Action Movies <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in action %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+                <!-- Add Pagination -->
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top 50 Comedy Movies <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in comedy %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top 50 Horror  Movies <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in horror %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top 50 Adventure  Movies <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in adventure %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top 50 Romantic  Movies <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in romantic %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-2 text-white">
+        <button class="btn btn-black btn-rounded text-white">Top 50 Animation Movies <i class="fas fa-caret-right"></i></button>
+    </div>
+    <div class="container">
+        <div class="netflix">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in animation %}
+                    <div class="swiper-slide">
+                        <div class="col-md-12 col-sm-6 col-xs-6  model-card">
+                            <a href="#">
+                                <div class="ribbon"><span>{{ item['year'] }}</span></div>
+                                <div class="bsblox-image-effect16"><img class="img" style="width: 341px;height: 220px;" src="{{ item['medium_cover_image'] }}" />
+
+                                    <div class="bsblox-caption mt-n5 mb-4 d-block d-none d-sm-block d-xs-block ">
+
+                                        <p class="mt-n5"> {% for item in item['torrents'] %} {%if item['quality']=="720p" or item['quality']=="1080p"%}
+                                            <a class="btn-lg btn-download ml-n2 pr-5rem  mt-n5 float-center" type="button" role="button" href="{{item['url']}}" download><i class="fa fa-download"></i></a>{%endif %} {%endfor%}
+                                        </p>
+
+                                        <p> <span class="mr-n3 "><strong><b>720P</b></strong></span> <span class="ml-4"><strong>1080P</strong></span></p>
+
+                                        <p> <i class="fas fa-star-half-alt float-center p-1 my-1 ml-n2 mb-n2 pr-2rem mb-n6 text-white" style="font-size: large;" data-toggle="tooltip" data-placement="top" title="Rating"><strong>{{item['rating']}}/10</strong></i></p><br>
+                                        <form action="{{url_for('movies_details')}}" method="POST">
+
+                                            <input type="text" class="d-none" value="{{item['id']}}" name="mid" id="mid"></p>
+                                            <p> <button class="mt-n3 btn btn-success btn-sm" type="submit" value="submit"><strong>Details</strong></button></p>
+                                        </form>
+                                    </div>
+                                    <div class="text-center mt-1 model-card-title" style="font-size: small;"><strong>{{ item['title'] }}</strong></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+                </div>
+
+                <div class="swiper-button-next" id="right"></div>
+                <div class="swiper-button-prev" id="left"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="page-footer font-small black">
+
+
+        <div class="footer-text text-center py-3 text-success">
+            <h5><strong>Designed and Developed By Aradhya Pavan</strong>
+            </h5>
+        </div>
+
+
+    </footer>
+    <script src="../static/package/js/swiper.min.js"></script>
+    <script src="../static/js/script.min.js"></script>
+
+    <script>
+        function myFunction(x) {
+            if (x.matches) {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    slidesPerGroup: 4,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            } else {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                    slidesPerGroup: 5,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+
+
+            }
+        }
+
+        var x = window.matchMedia("(max-width: 700px)")
+        myFunction(x)
+        x.addListener(myFunction)
+    </script>
+    <script>
+        $('.alert').alert()
+    </script>
+</body>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+    tippy('#search-bar', {
+        content: 'Enter your fav Movies here!',
+        interactive: true,
+
+    });
+    tippy('#close', {
+        content: 'Close',
+        interactive: true,
+
+    });
+    tippy('#search_button', {
+        content: 'Get Your Fav Movies!',
+        interactive: true,
+
+    });
+    tippy('#rating', {
+        content: 'Select Minimum rating from 0-9',
+    });
+    tippy('#genre', {
+        content: 'Select Your Fav Genre',
+    });
+    tippy('#sort_by', {
+        content: 'Sort By',
+    });
+    tippy('#filter_button', {
+        content: 'Filter Your Movies by Rating,Genre & Sort By Options',
+        maxWidth: 200,
+    });
+    tippy('#right', {
+        content: 'Next',
+
+    });
+    tippy('#left', {
+        content: 'Previous',
+
+    });
+</script>
+
+</html>

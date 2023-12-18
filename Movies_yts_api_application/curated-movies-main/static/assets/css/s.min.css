@@ -1,0 +1,237 @@
+.model-card {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+   
+   
+
+.ribbon {
+    position: absolute;
+    right: 10px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+    pointer-events: none;
+}
+
+.ribbon span {
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    background: #8f0808;
+    background: linear-gradient(#f70505 0, #8f0808 100%);
+    box-shadow: 0 3px 10px -5px #000;
+    position: absolute;
+    top: 19px;
+    right: -21px;
+}
+
+.ribbon span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #5f0000;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #5f0000;
+}
+
+.ribbon span::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #5f0000;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #5f0000;
+}
+
+[class*="image-effect"] .bsblox-caption h3 {
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+[class*="image-effect"] .bsblox-caption p {
+    font-size: 13px;
+    line-height: normal;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+[class*="image-effect"] img {
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+}
+
+.bsblox-image-effect16 img {
+    width: 100%;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    opacity: 0.9;
+}
+
+.bsblox-links div {
+    display: inline-block;
+}
+
+.bsblox-links .uk-icon-link,
+.bsblox-links .uk-icon-link:focus,
+.bsblox-links .uk-icon-link:hover {
+    color: inherit;
+}
+
+.bsblox-image-effect16 {
+    position: relative;
+    overflow: hidden;
+    background: #222;
+}
+
+.bsblox-image-effect16:hover img {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    filter: blur(4px);
+}
+
+.bsblox-image-effect16 .bsblox-caption {
+    position: absolute;
+    bottom: calc(50% - 30px);
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+}
+
+.bsblox-image-effect16:after,
+.bsblox-image-effect16:before {
+    position: absolute;
+    content: "";
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    -webkit-transition: 0.25s ease-in-out;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.bsblox-image-effect16:before {
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    pointer-event: none;
+}
+
+.bsblox-image-effect16:after {
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    bottom: 60px;
+    right: 20px;
+    pointer-events: none;
+}
+
+.bsblox-image-effect16:hover:after,
+.bsblox-image-effect16:hover:before {
+    height: 40px;
+    width: 40px;
+    opacity: 1;
+}
+
+.bsblox-image-effect16 .bsblox-caption h3 {
+    color: #fff;
+    margin-bottom: 8px;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.bsblox-image-effect16 .bsblox-caption p {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.bsblox-image-effect16:hover .bsblox-caption h3,
+.bsblox-image-effect16:hover .bsblox-caption p,
+.bsblox-image-effect16:hover .bsblox-links a.profile-link {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.bsblox-image-effect16 .bsblox-links {
+    position: absolute;
+    top: calc(50% - 25px);
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+    z-index: 10;
+}
+
+.bsblox-image-effect16 .bsblox-links a.profile-link {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    background-color: rgba(0, 0, 0, 0.56);
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    border-radius: 50%;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.bsblox-image-effect16 .bsblox-links a.profile-link:first-child {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+    margin-right: 5px;
+}
+
+.bsblox-image-effect16 .bsblox-links a.profile-link:last-child {
+    -webkit-transform: translateY(-60px);
+    transform: translateY(-60px);
+}
+
+.bsblox-image-effect16 .bsblox-links a.profile-link:hover {
+    background-color: rgba(0, 0, 0, 0.76);
+}
+
+@media (max-width: 420px) {
+    [class*="image-effect"] .bsblox-caption h3 {
+        font-size: 16px;
+    }
+}
+
+.model-card-title {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 10px;
+}

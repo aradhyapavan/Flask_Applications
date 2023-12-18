@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="table-responsive">
+        <table class="table ">
+
+            <thead>
+                <tr>{% for key in data1 %}
+                    <th scope="col">
+                        {{ key }} {% endfor %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td scope="col"> {{ item['id'] }}</td>
+                    <td scope="col"> {{ item['url'] }}</td>
+                    <td scope="col"> {{ item['imdb_code'] }}</td>
+                    <td scope="col"> {{ item['title'] }}</td>
+                    <td scope="col"> {{ item['title_english'] }}</td>
+                    <td scope="col"> {{ item['slug'] }}</td>
+                    <td scope="col"> <img src="{{ item['small_cover_image'] }}"> </td>
+                    <td scope="col"> {{ item['year'] }}</td>
+                    <td scope="col">{% for item in item['torrents']%}
+
+                        <a type="button" class="btn btn-success" href="{{item}}" download>Download</a>{%endfor%}
+                    </td>
+                    <td scope="col"> {{ item['year'] }}</td> {% endfor %}
+                </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+</body>
+
+</html>
